@@ -3,6 +3,7 @@ import Link from 'next/link';
 // after removing tool the site builds fine now
 // dunno why it wasn't working before LOL
 import GraceCase from './pages/gracecase';
+import GraceCapture from './pages/gracecapture';
 
 const tools = [
   { name: 'graceCase', description: 'Convert text case', href: '/gracecase' },
@@ -49,6 +50,11 @@ export default function Home() {
         <div className="mt-10">
           <GraceCase />
         </div>
+
+        <div className="mt-10">
+          <GraceCapture />
+        </div>
+
       </main>
     </div>
   );
