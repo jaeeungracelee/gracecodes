@@ -1,10 +1,16 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Rubik', ...fontFamily.sans],
+      },
       colors: {
         white: '#FFFFFF',
         tiffanyBlue: '#73C9D3',
@@ -12,10 +18,9 @@ module.exports = {
         night: '#0A0A0A',
         lilac: '#C3ACCE',
       },
-      fontFamily: {
-        rubik: ['Rubik', 'sans-serif'],
-      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

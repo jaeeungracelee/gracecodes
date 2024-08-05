@@ -1,63 +1,62 @@
+'use client';
 import { useState } from 'react';
 
 export default function GraceCase() {
-  const [text, setText] = useState('');
-  const [result, setResult] = useState('');
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
+  const [caseType, setCaseType] = useState('uppercase');
 
-  const convertCase = (type) => {
-    switch (type) {
-      case 'upper':
-        setResult(text.toUpperCase());
+  const handleConvert = () => {
+    switch (caseType) {
+      case 'uppercase':
+        setOutput(input.toUpperCase());
         break;
-      case 'lower':
-        setResult(text.toLowerCase());
+      case 'lowercase':
+        setOutput(input.toLowerCase());
         break;
-      case 'title':
-        setResult(
-          text.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
-        );
+      case 'titlecase':
+        setOutput(input.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()));
         break;
       default:
-        setResult(text);
+        setOutput(input);
     }
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-cerulean mb-8">GraceCase</h1>
+    <div className="max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold text-cerulean mb-6">gracecase</h1>
       <div className="space-y-4">
         <textarea
-          className="w-full h-32 p-2 border border-tiffanyBlue rounded"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Enter your text here..."
-        />
+          className="w-full p-2 border border-tiffanyBlue rounded"
+          rows="5"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="enter your text here..."
+        ></textarea>
         <div className="flex space-x-4">
-          <button
-            className="px-4 py-2 bg-cerulean text-white rounded hover:bg-tiffanyBlue"
-            onClick={() => convertCase('upper')}
+          <select
+            className="p-2 border border-tiffanyBlue rounded"
+            value={caseType}
+            onChange={(e) => setCaseType(e.target.value)}
           >
-            UPPERCASE
-          </button>
+            <option value="uppercase">UPPERCASE</option>
+            <option value="lowercase">lowercase</option>
+            <option value="titlecase">Title Case</option>
+          </select>
           <button
-            className="px-4 py-2 bg-cerulean text-white rounded hover:bg-tiffanyBlue"
-            onClick={() => convertCase('lower')}
+            className="bg-cerulean text-white px-4 py-2 rounded hover:bg-tiffanyBlue"
+            onClick={handleConvert}
           >
-            lowercase
-          </button>
-          <button
-            className="px-4 py-2 bg-cerulean text-white rounded hover:bg-tiffanyBlue"
-            onClick={() => convertCase('title')}
-          >
-            Title Case
+            Convert
           </button>
         </div>
-        {result && (
-          <div className="mt-4 p-4 bg-lilac rounded">
-            <h2 className="text-lg font-semibold mb-2">Result:</h2>
-            <p>{result}</p>
-          </div>
-        )}
+        <textarea
+          className="w-full p-2 border border-tiffanyBlue rounded"
+          rows="5"
+          value={output}
+          readOnly
+          placeholder="converted text will appear here..."
+        ></textarea>
       </div>
     </div>
   );
