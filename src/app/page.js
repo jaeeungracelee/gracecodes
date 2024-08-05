@@ -4,6 +4,7 @@ import Link from 'next/link';
 // dunno why it wasn't working before LOL
 import GraceCase from './pages/gracecase';
 import GraceCapture from './pages/gracecapture';
+import GraceCrypt from './pages/gracecrypt';
 
 const tools = [
   { name: 'graceCase', description: 'Convert text case', href: '/gracecase' },
@@ -53,6 +54,10 @@ export default function Home() {
 
         <div className="mt-10">
           <GraceCapture />
+        </div>
+
+        <div className="mt-10">
+          <GraceCrypt />
         </div>
 
       </main>
